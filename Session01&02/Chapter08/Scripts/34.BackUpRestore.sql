@@ -1,0 +1,25 @@
+CREATE DATABASE TestRestore
+GO
+
+ALTER AUTHORIZATION ON DATABASE::TestRestore TO sa
+GO
+BACKUP DATABASE TestRestore 
+TO DISK = 'D:\TestRestore.bak'
+GO
+
+USE master
+GO
+
+RESTORE DATABASE TestRestore 
+FROM DISK = 'D:\TestRestore.bak'
+GO
+RESTORE HEADERONLY 
+FROM DISK ='D:\TestRestore.bak'
+GO
+RESTORE FILELISTONLY 
+FROM DISK = 'D:\TestRestore.bak'
+GO
+RESTORE DATABASE TestRestore 
+FROM DISK ='D:\TestRestore.bak'
+WITH REPLACE
+
